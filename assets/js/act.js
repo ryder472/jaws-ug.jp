@@ -1,5 +1,13 @@
 (function($) {
-	
+
+	function escapeHtml(str) {
+		return $('<div>').text(str).html();
+	}
+
+	function safeUrl(url) {
+		return /^https?:\/\//i.test(url) ? url : '';
+	}
+
 	var $area = $('#area');
 	if ( $area.length > 0 ) {
 		var areahtml = '';
@@ -11,25 +19,25 @@
 			areahtml += '<dl class="branch-list">' + "\n";
 			$.each(data, function(i, obj ){
 				// name
-				areahtml += '<dt>' + obj.name + '</dt>' + "\n";
+				areahtml += '<dt>' + escapeHtml(obj.name) + '</dt>' + "\n";
 				areahtml += '<dd>' + "\n";
 				// url
 				if (obj.url.length > 0 ) {
-				areahtml += '<a href="' + obj.url + '" class="usa-button"><i class="fas fa-ticket-alt fa-inverse"></i> イベント申込</a>' + "\n";
+				areahtml += '<a href="' + escapeHtml(safeUrl(obj.url)) + '" class="usa-button"><i class="fas fa-ticket-alt fa-inverse"></i> イベント申込</a>' + "\n";
 				}
 				// facebook
 				if (obj.facebook.length > 0 ) {
-				areahtml += '<a href="' + obj.facebook + '" class="usa-button"><i class="fab fa-facebook fa-inverse"></i> Facebook</a>' + "\n";
+				areahtml += '<a href="' + escapeHtml(safeUrl(obj.facebook)) + '" class="usa-button"><i class="fab fa-facebook fa-inverse"></i> Facebook</a>' + "\n";
 				}
 				// twitter
 				if (obj.twitter.length > 0 ) {
-				areahtml += '<a href="' + obj.twitter + '" class="usa-button"><i class="fab fa-twitter fa-inverse"></i> Twitter</a>' + "\n";
+				areahtml += '<a href="' + escapeHtml(safeUrl(obj.twitter)) + '" class="usa-button"><i class="fab fa-twitter fa-inverse"></i> Twitter</a>' + "\n";
 				}
 				areahtml += '</dd>' + "\n";
 
 				// other
 				if (obj.other.length > 0 ) {
-				areahtml += '<dd>' + obj.other + '</dd>' + "\n";
+				areahtml += '<dd>' + escapeHtml(obj.other) + '</dd>' + "\n";
 				}
 			});
 			areahtml += '</dl>' + "\n";
@@ -48,25 +56,25 @@
 			listhtml += '<dl class="branch-list">' + "\n";
 			$.each(data, function(i, obj ){
 				// name
-				listhtml += '<dt>' + obj.name + '</dt>' + "\n";
+				listhtml += '<dt>' + escapeHtml(obj.name) + '</dt>' + "\n";
 				listhtml += '<dd>' + "\n";
 				// url
 				if (obj.url.length > 0 ) {
-				listhtml += '<a href="' + obj.url + '" class="usa-button"><i class="fas fa-ticket-alt fa-inverse"></i> イベント申込</a>' + "\n";
+				listhtml += '<a href="' + escapeHtml(safeUrl(obj.url)) + '" class="usa-button"><i class="fas fa-ticket-alt fa-inverse"></i> イベント申込</a>' + "\n";
 				}
 				// facebook
 				if (obj.facebook.length > 0 ) {
-				listhtml += '<a href="' + obj.facebook + '" class="usa-button"><i class="fab fa-facebook fa-inverse"></i> Facebook</a>' + "\n";
+				listhtml += '<a href="' + escapeHtml(safeUrl(obj.facebook)) + '" class="usa-button"><i class="fab fa-facebook fa-inverse"></i> Facebook</a>' + "\n";
 				}
 				// twitter
 				if (obj.twitter.length > 0 ) {
-				listhtml += '<a href="' + obj.twitter + '" class="usa-button"><i class="fab fa-twitter fa-inverse"></i> Twitter</a>' + "\n";
+				listhtml += '<a href="' + escapeHtml(safeUrl(obj.twitter)) + '" class="usa-button"><i class="fab fa-twitter fa-inverse"></i> Twitter</a>' + "\n";
 				}
 				listhtml += '</dd>' + "\n";
 
 				// other
 				if (obj.other.length > 0 ) {
-				listhtml += '<dd>' + obj.other + '</dd>' + "\n";
+				listhtml += '<dd>' + escapeHtml(obj.other) + '</dd>' + "\n";
 				}
 			});
 			listhtml += '</dl>' + "\n";
